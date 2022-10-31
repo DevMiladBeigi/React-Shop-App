@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Image, ListGroup } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import products from "../products";
-export const Product = () => {
-  const { id } = useParams();
+import axios from "axios";
 
-  const product = products.find((item) => {
-    return item._id === id;
-  });
+export const Product = ({ match }) => {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const sendRequest = async () => {
+      const response = await axios.get(
+        `http://localhost:8000/api/products/${id}`
+      );
+
+      setProduct(response.data);
+    };
+    sendRequest();
+  }, [match]);
+
   return (
     <div>
       <Link to="/" className="btn btn-ligth">
@@ -18,7 +27,7 @@ export const Product = () => {
           <Image src={product.image} fliud />
         </Col>
         <Col md={3}>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <h3>{product.name}</h3>
             </ListGroup.Item>
@@ -27,7 +36,7 @@ export const Product = () => {
           </ListGroup>
         </Col>
         <Col md={3}>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <Button className="btn-block" type="button">
                 افزودن به سبد خرید
