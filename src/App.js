@@ -13,9 +13,7 @@ export const App = () => {
         <Container>
           <Routes>
             <Route path="/" element={<Home />} exact />
-          </Routes>
-          <Routes>
-            <Route path="/product/:_id" element={<Product />} />
+            <Route path="/product/:id" element={<Product />} />
           </Routes>
         </Container>
       </main>

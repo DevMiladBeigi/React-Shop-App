@@ -1,8 +1,18 @@
-import React from "react";
-import products from "../products";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Product } from "../Components/Product/Product";
+import axios from "axios";
 export const Home = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const sendRequest = async () => {
+      const response = await axios.get("http://localhost:8000/api/products");
+
+      setProducts(response.data)
+    }
+    sendRequest()
+  }, []);
   return (
     <div>
       <h1>محصولات</h1>
@@ -11,7 +21,7 @@ export const Home = () => {
           return (
             <Col key={item._id} sm={12} md={6} lg={4}>
               <h3>
-                <Product product={item}/>
+                <Product product={item} />
               </h3>
             </Col>
           );
