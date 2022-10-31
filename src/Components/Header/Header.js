@@ -7,8 +7,8 @@ export const Header = () => {
       <Container>
        <Navbar.Brand href='/'>Fc Market</Navbar.Brand>
        <Nav>
-        <Nav.Link href='/cart'>سبد خرید</Nav.Link>
-        <Nav.Link href='/account'>حساب کاربری </Nav.Link>
+        <Nav.Link href='/cart'><i className="fa fa-shopping-cart"></i></Nav.Link>
+        <Nav.Link href='/account'> <i className='fa fa-user'></i> </Nav.Link>
        </Nav>
       </Container>
     </Navbar>
