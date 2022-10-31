@@ -1,32 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import { Product } from "../Components/Product/Product";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { productListActon } from "../action/productAction";
 export const Home = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { loading, products } = productList;
 
   useEffect(() => {
-    const sendRequest = async () => {
-      const response = await axios.get("http://localhost:8000/api/products");
-
-      setProducts(response.data)
-    }
-    sendRequest()
-  }, []);
+    dispatch(productListActon());
+  }, [dispatch]);
   return (
     <div>
       <h1>محصولات</h1>
-      <Row>
-        {products.map((item) => {
-          return (
-            <Col key={item._id} sm={12} md={6} lg={4}>
-              <h3>
-                <Product product={item} />
-              </h3>
-            </Col>
-          );
-        })}
-      </Row>
+      {loading ? (
+        <h2>در حال دریافت...</h2>
+      ) : (
+        <Row>
+          {products.map((item) => {
+            return (
+              <Col key={item._id} sm={12} md={6} lg={4}>
+                <h3>
+                  <Product product={item} />
+                </h3>
+              </Col>
+            );
+          })}
+        </Row>
+      )}
     </div>
   );
 };
