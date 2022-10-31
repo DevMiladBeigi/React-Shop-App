@@ -1,16 +1,29 @@
 import React from "react";
-import {Container,Navbar,NAv, Nav} from 'react-bootstrap'
-import './Header.css'
+import { Container, Navbar, Nav } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import "./Header.css";
 export const Header = () => {
-  return <header>
-    <Navbar className="nav-bg" variant='dark'>
-      <Container>
-       <Navbar.Brand href='/'>Fc Market</Navbar.Brand>
-       <Nav>
-        <Nav.Link href='/cart'><i className="fa fa-shopping-cart"></i></Nav.Link>
-        <Nav.Link href='/account'> <i className='fa fa-user'></i> </Nav.Link>
-       </Nav>
-      </Container>
-    </Navbar>
-  </header>;
+  return (
+    <header>
+      <Navbar className="nav-bg" variant="dark">
+        <Container>
+          <LinkContainer to="/">
+            <Navbar.Brand>Fc Market</Navbar.Brand>
+          </LinkContainer>
+          <Nav>
+            <LinkContainer to="/cart">
+              <Nav.Link>
+                <i className="fa fa-shopping-cart"></i>
+              </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/account">
+              <Nav.Link>
+                <i className="fa fa-user"></i>{" "}
+              </Nav.Link>
+            </LinkContainer>
+          </Nav>
+        </Container>
+      </Navbar>
+    </header>
+  );
 };
