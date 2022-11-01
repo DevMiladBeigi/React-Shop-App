@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { Header } from "./Components/Header/Header";
 import { Footer } from "./Components/Footer/Footer";
 import { Home } from "./pages/Home";
-import {Cart} from './pages/Cart'
+import Cart from './pages/Cart'
 import { Product } from "./pages/Product";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 export const App = () => {
