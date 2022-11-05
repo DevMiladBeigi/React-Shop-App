@@ -24,6 +24,6 @@ export const productDetailActon = (id) => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    console.Log(error);
+    console.log(error);
   }
 };
